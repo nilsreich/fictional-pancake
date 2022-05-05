@@ -1,12 +1,14 @@
-import Topbar from "../components/Topbar";
+import Statusbar from "../components/Statusbar";
 import Sidebar from "../components/Sidebar";
+import Explorer from "../components/Explorer";
 
 export default function Layout({ children }) {
   return (
     <>
-      <Topbar />
+      <Statusbar />
       <div className="flex">
         <Sidebar />
+        <Explorer />
         {children}
       </div>
     </>

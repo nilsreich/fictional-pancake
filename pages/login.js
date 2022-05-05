@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
 import * as Tabs from "@radix-ui/react-tabs";
-import Topbar from "../components/Topbar";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -116,6 +115,5 @@ export default function Login() {
 
 Login.getLayout = function getLayout(login) {
   return <>
-  <Topbar />
   {login}</>;
 };
