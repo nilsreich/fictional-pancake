@@ -1,109 +1,48 @@
-import { useState, useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
-
-export default function About({ session }) {
-  const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
-
-  useEffect(() => {
-    getProfile()
-  }, [session])
-
-  async function getProfile() {
-    try {
-      setLoading(true)
-      const user = supabase.auth.user()
-
-      let { data, error, status } = await supabase
-        .from('profiles')
-        .select(`username, website, avatar_url`)
-        .eq('id', user.id)
-        .single()
-
-      if (error && status !== 406) {
-        throw error
-      }
-
-      if (data) {
-        setUsername(data.username)
-        setWebsite(data.website)
-        setAvatarUrl(data.avatar_url)
-      }
-    } catch (error) {
-      alert(error.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  async function updateProfile({ username, website, avatar_url }) {
-    try {
-      setLoading(true)
-      const user = supabase.auth.user()
-
-      const updates = {
-        id: user.id,
-        username,
-        website,
-        avatar_url,
-        updated_at: new Date(),
-      }
-
-      let { error } = await supabase.from('profiles').upsert(updates, {
-        returning: 'minimal', // Don't return the value after inserting
-      })
-
-      if (error) {
-        throw error
-      }
-    } catch (error) {
-      alert(error.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
+export default function About() {
   return (
-    <div className="form-widget">
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+<div className="mx-auto mt-20 max-w-6xl">
+  <div className="text-4xl">Feedback</div>
+  <div className="flex">
+    <div className="flex-1">
+      <div className="text-2xl text-gray-500">Thematisch</div>
+      <div className="mt-2 -ml-4 flex flex-wrap">
+        <div className="m-4 max-w-md bg-slate-100 p-4">
+          <div className="-m-4 mb-4 w-28 bg-blue-500 px-3 py-1 text-xs font-bold text-white">Hausaufgaben</div>
+          <img src="https://user-images.githubusercontent.com/1454752/29993250-51208336-8fcf-11e7-9723-a392f307a98d.jpg" />
+        </div>
+        <div className="m-4 max-w-md bg-slate-100 p-4">
+          <div className="-m-4 mb-4 w-28 bg-blue-500 px-3 py-1 text-xs font-bold text-white">Unterricht</div>
+          <img src="https://user-images.githubusercontent.com/1454752/29993250-51208336-8fcf-11e7-9723-a392f307a98d.jpg" />
+        </div>
+        <div className="m-4 max-w-md bg-slate-100 p-4">
+          <div className="-m-4 mb-4 w-28 bg-blue-500 px-3 py-1 text-xs font-bold text-white">Atmosphaere</div>
+          <img src="https://user-images.githubusercontent.com/1454752/29993250-51208336-8fcf-11e7-9723-a392f307a98d.jpg" />
+        </div>
       </div>
-      <div>
-        <label htmlFor="username">Name</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <button
-          className="button block primary"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
-
-      <div>
-        <button className="button block" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
+      <div className="mt-8 text-2xl text-gray-500">HBFS</div>
+      <div className="mt-2 -ml-4 flex flex-wrap">
+        <div className="m-4 bg-slate-100 p-4">
+          <div className="-m-4 mb-4 w-28 bg-blue-500 px-3 py-1 text-xs font-bold text-white">Hausaufgaben</div>
+          <img src="https://user-images.githubusercontent.com/1454752/29993250-51208336-8fcf-11e7-9723-a392f307a98d.jpg" />
+        </div>
+        <div className="m-4 max-w-md bg-slate-100 p-4">
+          <div className="-m-4 mb-4 w-28 bg-blue-500 px-3 py-1 text-xs font-bold text-white">Unterricht</div>
+          <img src="https://user-images.githubusercontent.com/1454752/29993250-51208336-8fcf-11e7-9723-a392f307a98d.jpg" />
+        </div>
+        <div className="m-4 max-w-md bg-slate-100 p-4">
+          <div className="-m-4 mb-4 w-28 bg-blue-500 px-3 py-1 text-xs font-bold text-white">Atmosphaere</div>
+          <img src="https://user-images.githubusercontent.com/1454752/29993250-51208336-8fcf-11e7-9723-a392f307a98d.jpg" />
+        </div>
       </div>
     </div>
-  )
+    <div className="ml-4 mt-12 border-l border-gray-300 pl-8 text-xs text-gray-800">
+      <div className="pb-2">Thematisch</div>
+      <div className="pb-2">HBFS</div>
+      <div className="pb-2">BF1</div>
+      <div className="pb-2">BGY21c</div>
+    </div>
+  </div>
+</div>
+
+  );
 }
