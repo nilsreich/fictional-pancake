@@ -1,7 +1,7 @@
 export default function Explorer() {
   return (
     <>
-      <div className="h-[calc(100vh-1.25rem)] w-60 border-r border-gray-300 bg-slate-100 hidd2en md:flex flex-col justify-between pt-1">
+      <div className="h-[calc(100vh-1.25rem)] w-60 border-r border-gray-300 bg-slate-100 hidden md:flex flex-col justify-between pt-1">
         <div>
           <div className="text-xs  uppercase  py-1 flex pl-1">
             <svg

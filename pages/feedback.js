@@ -1,4 +1,4 @@
-export default function About() {
+export default function Feedback() {
   return (
 <div className="mx-auto mt-20 max-w-6xl">
   <div className="text-4xl">Feedback</div>
