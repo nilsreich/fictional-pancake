@@ -1,4 +1,7 @@
 export default function Class(){
+
+
+
     return(
         <div className="px-20 flex-1">
   <div className="mx-8 mt-4 mb-2 flex items-center border bg-gray-50">
