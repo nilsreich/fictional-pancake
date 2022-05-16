@@ -1,4 +1,6 @@
 import Explorer from "../components/Explorer";
+import Editor from "../components/Editor";
+import Test from "../components/Test";
 
 export default function Home() {
   return (
@@ -22,7 +24,9 @@ export default function Home() {
       </div>
     </div>
     <div className="relative flex h-[92.5vh] flex-1">
-      <div className="flex-1 p-12 text-3xl">Schnittpunkte</div>
+      <div className="flex-1 p-12">
+        <Editor />
+      </div>
       <div className="flex w-60 flex-col justify-between border-l border-gray-300 text-xs">
         <div>
           <div className="flex py-1 px-2 text-xs font-medium text-gray-600">
